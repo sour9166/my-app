@@ -410,7 +410,7 @@ export class Office365OutlookService {
   }
 
   /**
-   * E emails (V2)
+   * Get emails (V2)
    * This operation gets emails from a folder.
    */
   public static async GetEmailsV2(folderPath?: string, to?: string, cc?: string, toOrCc?: string, from?: string, importance?: string, fetchOnlyWithAttachment?: boolean, subjectFilter?: string, fetchOnlyUnread?: boolean, fetchOnlyFlagged?: boolean, mailboxAddress?: string, includeAttachments?: boolean, searchQuery?: string, top?: number): Promise<IOperationResult<BatchResponse_ClientReceiveMessage>> {
@@ -2322,7 +2322,7 @@ export class Office365OutlookService {
   }
 
   /**
-   * Email Management MCP Server
+   * Email Management MCP Server (deprecated)
    * This MCP server manages email messages from your Office 365 account
    */
   public static async mcp_EmailsManagement(queryRequest?: MCPQueryRequest, sessionId?: string): Promise<IOperationResult<MCPQueryResponse>> {
@@ -2339,7 +2339,7 @@ export class Office365OutlookService {
   }
 
   /**
-   * Meeting Management MCP Server
+   * Meeting Management MCP Server (deprecated)
    * This MCP server manages events, calendars and meetings
    */
   public static async mcp_MeetingManagement(queryRequest?: MCPQueryRequest, sessionId?: string): Promise<IOperationResult<MCPQueryResponse>> {

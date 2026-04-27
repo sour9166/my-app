@@ -4,7 +4,7 @@
   "type": "Microsoft.PowerApps/apis",
   "properties": {
     "displayName": "Office 365 Outlook",
-    "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1788/1.0.1788.4548/office365/icon.png",
+    "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1802/1.0.1802.4700/office365/icon.png",
     "iconBrandColor": "#0078D4",
     "apiEnvironment": "Shared",
     "isCustomApi": false,
@@ -1406,7 +1406,9 @@
                 "required": false,
                 "x-ms-summary": "Message Id",
                 "x-ms-visibility": "advanced",
-                "type": "string"
+                "type": "string",
+                "x-ms-name-for-model": "draft_email_message_id",
+                "x-ms-description-for-model": "Set to the ID of an existing draft message when updating an existing draft rather than creating a new draft."
               },
               {
                 "name": "draftType",
@@ -1415,7 +1417,9 @@
                 "required": false,
                 "x-ms-summary": "Draft Type",
                 "x-ms-visibility": "advanced",
-                "type": "string"
+                "type": "string",
+                "x-ms-name-for-model": "draft_email_draft_type",
+                "x-ms-description-for-model": "Set to the draft classification when distinguishing between system-generated drafts and user templates."
               },
               {
                 "name": "comment",
@@ -1424,7 +1428,9 @@
                 "required": false,
                 "x-ms-summary": "Comment",
                 "x-ms-visibility": "advanced",
-                "type": "string"
+                "type": "string",
+                "x-ms-name-for-model": "draft_email_comment",
+                "x-ms-description-for-model": "Set to a short note or instructions for the person who will review and send the draft. Example: Please check the numbers before sending."
               }
             ],
             "responses": {
@@ -1458,6 +1464,8 @@
               "family": "DraftMessage",
               "revision": 1
             },
+            "x-ms-name-for-model": "draft_email",
+            "x-ms-description-for-model": "Use tool to create or update a draft email. Do not use if the user intent is to send the email immediately. Example user intent: \"draft a follow up I can edit\"; \"prepare a reply for my manager to review\".",
             "externalDocs": {
               "url": "https://docs.microsoft.com/connectors/office365/#draft-an-email-message"
             }
@@ -2085,6 +2093,8 @@
               "family": "SendEmail",
               "revision": 2
             },
+            "x-ms-name-for-model": "send_email_v2",
+            "x-ms-description-for-model": "Use tool to send an email when the user asks to email someone or a group. Do not use if the user intent is simply to draft an email. Example user intent: \"email a customer a follow up\"; \"notify a stakeholder that a task is complete\"",
             "externalDocs": {
               "url": "https://docs.microsoft.com/connectors/office365/#send-an-email-(v2)"
             }
@@ -2431,7 +2441,9 @@
                   }
                 },
                 "type": "string",
-                "default": "Inbox"
+                "default": "Inbox",
+                "x-ms-name-for-model": "get_emails_v3_folder_path",
+                "x-ms-description-for-model": "Set to the specific mail folder to get the emails from. Defaults to 'Inbox' if not specified. Examples: \"Inbox\"; \"Sent Items\"; \"Archive\"."
               },
               {
                 "name": "to",
@@ -2445,7 +2457,9 @@
                   "value-path": "mail"
                 },
                 "type": "string",
-                "format": "email"
+                "format": "email",
+                "x-ms-name-for-model": "get_emails_v3_to",
+                "x-ms-description-for-model": "Set to specific email addresses to filter by recipients. Separate multiple emails with semicolons to match any of them (OR logic). MUST be email(s) not raw name(s). Examples: \"me@example.com\"."
               },
               {
                 "name": "cc",
@@ -2460,7 +2474,9 @@
                   "value-path": "mail"
                 },
                 "type": "string",
-                "format": "email"
+                "format": "email",
+                "x-ms-name-for-model": "get_emails_v3_cc",
+                "x-ms-description-for-model": "Set to specific email addresses to filter by CC recipients. Separate multiple emails with semicolons to match any of them (OR logic). MUST be email(s) not raw name(s). Examples:\"team-lead@example.com;vp@example.com\""
               },
               {
                 "name": "toOrCc",
@@ -2475,7 +2491,9 @@
                   "value-path": "mail"
                 },
                 "type": "string",
-                "format": "email"
+                "format": "email",
+                "x-ms-name-for-model": "get_emails_v3_to_or_cc",
+                "x-ms-description-for-model": "Set to specific email addresses to filter by To or CC recipients combined. Separate multiple emails with semicolons to match any of them (OR logic). MUST be email(s) not raw name(s).Examples: \"legal@example.com;finance@example.com\""
               },
               {
                 "name": "from",
@@ -2489,7 +2507,9 @@
                   "value-path": "mail"
                 },
                 "type": "string",
-                "format": "email"
+                "format": "email",
+                "x-ms-name-for-model": "get_emails_v3_from",
+                "x-ms-description-for-model": "Set to specific email addresses to filter by sender. Separate multiple emails with semicolons to match any of them using (OR logic). MUST be email(s) not raw name(s). Examples: \"notifications@partner.com;alerts@partner.com\""
               },
               {
                 "name": "importance",
@@ -2505,7 +2525,9 @@
                   "Low",
                   "Normal",
                   "High"
-                ]
+                ],
+                "x-ms-name-for-model": "get_emails_v3_importance",
+                "x-ms-description-for-model": "Set to a priority level to filter by importance. Choose between ONLY \"High\", \"Normal\", \"Low\", or \"Any\"."
               },
               {
                 "name": "fetchOnlyWithAttachment",
@@ -2515,7 +2537,9 @@
                 "x-ms-summary": "Only with Attachments",
                 "x-ms-visibility": "advanced",
                 "type": "boolean",
-                "default": false
+                "default": false,
+                "x-ms-name-for-model": "get_emails_v3_fetch_only_with_attachment",
+                "x-ms-description-for-model": "Set to true to retrieve only emails with attachments, otherwise false. Must ONLY either be true or false."
               },
               {
                 "name": "subjectFilter",
@@ -2524,7 +2548,9 @@
                 "required": false,
                 "x-ms-summary": "Subject Filter",
                 "x-ms-visibility": "advanced",
-                "type": "string"
+                "type": "string",
+                "x-ms-name-for-model": "get_emails_v3_subject_filter",
+                "x-ms-description-for-model": "Set to string to filter for emails where the subject line contains this specific matching text. Example: \"Urgent\"."
               },
               {
                 "name": "fetchOnlyUnread",
@@ -2533,7 +2559,9 @@
                 "required": false,
                 "x-ms-summary": "Fetch Only Unread Messages",
                 "type": "boolean",
-                "default": true
+                "default": true,
+                "x-ms-name-for-model": "get_emails_v3_fetch_only_unread",
+                "x-ms-description-for-model": "Set to true to filter for unread emails only, otherwise set to false to search all emails. Must ONLY either be true or false."
               },
               {
                 "name": "fetchOnlyFlagged",
@@ -2556,7 +2584,9 @@
                   "parameters": {},
                   "value-path": "mail"
                 },
-                "type": "string"
+                "type": "string",
+                "x-ms-name-for-model": "get_emails_v3_mailbox_address",
+                "x-ms-description-for-model": "Set this to a shared mailbox email address if the user asks for things like 'search in,' 'look inside,' or 'check' a shared mailbox. DO NOT use this for the sender of the email (e.g., 'emails from x')."
               },
               {
                 "name": "includeAttachments",
@@ -2565,7 +2595,9 @@
                 "required": false,
                 "x-ms-summary": "Include Attachments",
                 "type": "boolean",
-                "default": false
+                "default": false,
+                "x-ms-name-for-model": "get_emails_v3_include_attachments",
+                "x-ms-description-for-model": "Set to true to retrieve actual attachment content when getting emails, otherwise false. Must ONLY either be true or false"
               },
               {
                 "name": "searchQuery",
@@ -2573,7 +2605,9 @@
                 "description": "Search query to filter emails. How to use '$search' parameter please refer to: https://docs.microsoft.com/graph/query-parameters#search-parameter.",
                 "required": false,
                 "x-ms-summary": "Search Query",
-                "type": "string"
+                "type": "string",
+                "x-ms-name-for-model": "get_emails_v3_search_query",
+                "x-ms-description-for-model": "Set to a KQL search string to filter emails. Examples: \"subject:planning AND from:alice\"; \"body:budget\""
               },
               {
                 "name": "top",
@@ -2584,7 +2618,9 @@
                 "type": "integer",
                 "format": "int32",
                 "default": 10,
-                "maximum": 1000
+                "maximum": 1000,
+                "x-ms-name-for-model": "get_emails_v3_top",
+                "x-ms-description-for-model": "Set to an integer to limit the number of emails returned. Max value is 1000. If user asks for 'all' or 'every', set to 1000"
               }
             ],
             "responses": {
@@ -2617,6 +2653,8 @@
               "family": "GetEmails",
               "revision": 3
             },
+            "x-ms-name-for-model": "get_emails_v3",
+            "x-ms-description-for-model": "Use this tool to search, get, read, or retrieve emails (possibly from specific folders) in a user's mailbox. IMPORTANT: When the user specifies any filters (sender, subject, search terms, unread, attachments, folder, count, priority, recipients), you MUST pass them as input parameters to this tool. Do NOT retrieve all emails and filter in your response — use the appropriate parameter instead. Sample intents: \"Check if I got an email from Alice\"; \"Get my last 5 unread emails\".",
             "externalDocs": {
               "url": "https://docs.microsoft.com/connectors/office365/#get-emails-(v3)"
             }
@@ -3194,7 +3232,9 @@
                 "description": "Id of the email to reply to.",
                 "required": true,
                 "x-ms-summary": "Message Id",
-                "type": "string"
+                "type": "string",
+                "x-ms-name-for-model": "reply_to_email_v3_message_id",
+                "x-ms-description-for-model": "Set to the unique ID of the email message to reply to. This is typically obtained from a previous get-email or get-emails action."
               },
               {
                 "name": "replyParameters",
@@ -3246,6 +3286,8 @@
               "family": "ReplyTo",
               "revision": 3
             },
+            "x-ms-name-for-model": "reply_to_email_v3",
+            "x-ms-description-for-model": "Use tool to reply to an existing email. Always provide a reply body. Example user intent: reply to the customer confirming the order; respond to the email saying I'll attend.",
             "externalDocs": {
               "url": "https://docs.microsoft.com/connectors/office365/#reply-to-email-(v3)"
             }
@@ -7165,6 +7207,8 @@
             ],
             "summary": "Send email with options",
             "description": "This operation sends an email with multiple options and waits for the recipient to respond back with one of the options. Please refer to the following link regarding the support of actionable messages in different mail clients: https://docs.microsoft.com/outlook/actionable-messages/#outlook-version-requirements-for-actionable-messages.",
+            "x-ms-name-for-model": "send_mail_with_options",
+            "x-ms-description-for-model": "Use tool to send an email with buttons or choices and wait for the recipient to pick one option. User intents will usually be to request options, choices, or votes via email. Example user intent: Ask the customer in an email to choose Standard, Express, or Priority shipping.",
             "operationId": "SendMailWithOptions",
             "consumes": [
               "application/json",
@@ -13757,9 +13801,10 @@
           "post": {
             "tags": [
               "agentic",
-              "Action"
+              "Action",
+              "deprecated"
             ],
-            "summary": "Email Management MCP Server",
+            "summary": "Email Management MCP Server (deprecated)",
             "description": "This MCP server manages email messages from your Office 365 account",
             "operationId": "mcp_EmailsManagement",
             "consumes": [],
@@ -13804,7 +13849,7 @@
             "x-ms-visibility": "important",
             "x-ms-mcs-visibility": "featured",
             "externalDocs": {
-              "url": "https://docs.microsoft.com/connectors/office365/#email-management-mcp-server"
+              "url": "https://docs.microsoft.com/connectors/office365/#email-management-mcp-server-(deprecated)"
             }
           }
         },
@@ -13812,9 +13857,10 @@
           "post": {
             "tags": [
               "agentic",
-              "Action"
+              "Action",
+              "deprecated"
             ],
-            "summary": "Meeting Management MCP Server",
+            "summary": "Meeting Management MCP Server (deprecated)",
             "description": "This MCP server manages events, calendars and meetings",
             "operationId": "mcp_MeetingManagement",
             "consumes": [],
@@ -13859,7 +13905,7 @@
             "x-ms-visibility": "important",
             "x-ms-mcs-visibility": "featured",
             "externalDocs": {
-              "url": "https://docs.microsoft.com/connectors/office365/#meeting-management-mcp-server"
+              "url": "https://docs.microsoft.com/connectors/office365/#meeting-management-mcp-server-(deprecated)"
             }
           }
         },
@@ -15848,13 +15894,17 @@
             "Name": {
               "description": "Attachment name",
               "type": "string",
-              "x-ms-summary": "Name"
+              "x-ms-summary": "Name",
+              "x-ms-name-for-model": "office365users_clientsendattachment_name",
+              "x-ms-description-for-model": "Set to the attachment file name the recipient will see when sending an attachment, including extension. Example: request-details.pdf."
             },
             "ContentBytes": {
               "format": "byte",
               "description": "Attachment content",
               "type": "string",
-              "x-ms-summary": "Content"
+              "x-ms-summary": "Content",
+              "x-ms-name-for-model": "office365users_clientsendattachment_content_bytes",
+              "x-ms-description-for-model": "Set to the attachment file content as bytes, usually a base64 string from a previous action such as Get file content. Use only when sending an attachment."
             }
           }
         },
@@ -16045,25 +16095,33 @@
                 "builtInOperation": "AadGraph.GetUsers",
                 "parameters": {},
                 "value-path": "mail"
-              }
+              },
+              "x-ms-name-for-model": "send_email_v2_to",
+              "x-ms-description-for-model": "Set to the primary recipient email address or addresses, separated by semicolons. Example: alice@example.com;bob@example.com."
             },
             "Subject": {
               "description": "Specify the subject of the mail",
               "type": "string",
-              "x-ms-summary": "Subject"
+              "x-ms-summary": "Subject",
+              "x-ms-name-for-model": "send_email_v2_subject",
+              "x-ms-description-for-model": "Set to a short, specific subject that matches the email's purpose, deriving it from the user intent, instructions, or conversation if not given. Example: Weekly Project Status Update, Please Submit Outstanding Invoices, Quarterly Town Hall - Thursday 3 PM"
             },
             "Body": {
               "format": "html",
               "description": "Specify the body of the mail",
               "type": "string",
-              "x-ms-summary": "Body"
+              "x-ms-summary": "Body",
+              "x-ms-name-for-model": "send_email_v2_body",
+              "x-ms-description-for-model": "Set to the full email body as HTML or plain text using details from the conversation. Example: Hi team,<br/>Please review the attached proposal by Friday…<br/>Thanks!."
             },
             "From": {
               "format": "email",
               "description": "Email address to send mail from (requires \"Send as\" or \"Send on behalf of\" permission for that mailbox). For more info on granting permissions please refer https://docs.microsoft.com/office365/admin/manage/send-email-as-distribution-list",
               "type": "string",
               "x-ms-summary": "From (Send as)",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "send_email_v2_from",
+              "x-ms-description-for-model": "Set to the sender mailbox address when the email must come from a different email address. Example: billing@example.com."
             },
             "Cc": {
               "format": "email",
@@ -16075,7 +16133,9 @@
                 "builtInOperation": "AadGraph.GetUsers",
                 "parameters": {},
                 "value-path": "mail"
-              }
+              },
+              "x-ms-name-for-model": "send_email_v2_cc",
+              "x-ms-description-for-model": "Set to CC recipient email addresses when others should visibly receive a copy, separated by semicolons. Example: manager@example.com;pm@example.com."
             },
             "Bcc": {
               "format": "email",
@@ -16087,7 +16147,9 @@
                 "builtInOperation": "AadGraph.GetUsers",
                 "parameters": {},
                 "value-path": "mail"
-              }
+              },
+              "x-ms-name-for-model": "send_email_v2_bcc",
+              "x-ms-description-for-model": "Set to BCC recipient email addresses when others should receive a hidden copy, separated by semicolons. Example: audit@example.com;compliance@example.com."
             },
             "Attachments": {
               "description": "Attachments",
@@ -16096,7 +16158,9 @@
                 "$ref": "#/definitions/ClientSendAttachment"
               },
               "x-ms-summary": "Attachments",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "send_email_v2_attachments",
+              "x-ms-description-for-model": "Set to the attachments to send when the user provides a file(s)."
             },
             "Sensitivity": {
               "description": "Sensitivity",
@@ -16108,14 +16172,18 @@
                 "parameters": {},
                 "value-path": "Id",
                 "value-title": "DisplayName"
-              }
+              },
+              "x-ms-name-for-model": "send_email_v2_sensitivity",
+              "x-ms-description-for-model": "Set to the Outlook sensitivity label ID when information protection is required. This is a tenant-specific label from Microsoft 365 sensitivity labels."
             },
             "ReplyTo": {
               "format": "email",
               "description": "The email addresses to use when replying",
               "type": "string",
               "x-ms-summary": "Reply To",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "send_email_v2_reply_to",
+              "x-ms-description-for-model": "Set to the email address or addresses, separated by semicolons, where replies should go if different from the sender's email address. Example: support@example.com;helpdesk@example.com."
             },
             "Importance": {
               "description": "Importance",
@@ -16127,7 +16195,9 @@
               ],
               "type": "string",
               "x-ms-summary": "Importance",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "send_email_v2_importance",
+              "x-ms-description-for-model": "Set to the email importance when urgency is stated or implied. Choose ONLY between Low, Normal, High. Example: 'High' for urgent requests."
             }
           }
         },
@@ -16149,25 +16219,33 @@
                 "builtInOperation": "AadGraph.GetUsers",
                 "parameters": {},
                 "value-path": "mail"
-              }
+              },
+              "x-ms-name-for-model": "draft_email_to",
+              "x-ms-description-for-model": "Set to the primary recipient email address or addresses, separated by semicolons. Example: alice@contoso.com;bob@contoso.com."
             },
             "Subject": {
               "description": "Specify the subject of the mail",
               "type": "string",
-              "x-ms-summary": "Subject"
+              "x-ms-summary": "Subject",
+              "x-ms-name-for-model": "draft_email_subject",
+              "x-ms-description-for-model": "Set to a short, specific subject that matches the email's purpose, deriving it from the user intent, instructions, or conversation if not given. Example: Weekly Project Status Update."
             },
             "Body": {
               "format": "html",
               "description": "Specify the body of the mail",
               "type": "string",
-              "x-ms-summary": "Body"
+              "x-ms-summary": "Body",
+              "x-ms-name-for-model": "draft_email_body",
+              "x-ms-description-for-model": "Set to the full email body as HTML or plain text using details from the conversation. Example: Hi team, Please review the attached proposal by Friday...Thanks!."
             },
             "From": {
               "format": "email",
               "description": "Email address to send mail from (requires \"Send as\" or \"Send on behalf of\" permission for that mailbox). For more info on granting permissions please refer https://docs.microsoft.com/office365/admin/manage/send-email-as-distribution-list",
               "type": "string",
               "x-ms-summary": "From (Send as)",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "draft_email_from",
+              "x-ms-description-for-model": "Set to the sender mailbox address when the draft must come from a different email address. Example: billing@contoso.com."
             },
             "Cc": {
               "format": "email",
@@ -16179,7 +16257,9 @@
                 "builtInOperation": "AadGraph.GetUsers",
                 "parameters": {},
                 "value-path": "mail"
-              }
+              },
+              "x-ms-name-for-model": "draft_email_cc",
+              "x-ms-description-for-model": "Set to CC recipient email addresses when others should visibly receive a copy, separated by semicolons. Example: manager@contoso.com."
             },
             "Bcc": {
               "format": "email",
@@ -16191,7 +16271,9 @@
                 "builtInOperation": "AadGraph.GetUsers",
                 "parameters": {},
                 "value-path": "mail"
-              }
+              },
+              "x-ms-name-for-model": "draft_email_bcc",
+              "x-ms-description-for-model": "Set to BCC recipient email addresses when others should receive a hidden copy, separated by semicolons. Example: audit@contoso.com."
             },
             "Attachments": {
               "description": "Attachments",
@@ -16200,7 +16282,9 @@
                 "$ref": "#/definitions/ClientSendAttachment"
               },
               "x-ms-summary": "Attachments",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "draft_email_attachments",
+              "x-ms-description-for-model": "Set to attachments when the user provides files. Each item needs Name (file name with extension, e.g., invoice-1042.pdf) and ContentBytes (base64 string from a previous step or tool)."
             },
             "Sensitivity": {
               "description": "Sensitivity",
@@ -16212,14 +16296,18 @@
                 "parameters": {},
                 "value-path": "Id",
                 "value-title": "DisplayName"
-              }
+              },
+              "x-ms-name-for-model": "draft_email_sensitivity",
+              "x-ms-description-for-model": "Set to the appropriate Outlook sensitivity level of the draft."
             },
             "ReplyTo": {
               "format": "email",
               "description": "The email addresses to use when replying",
               "type": "string",
               "x-ms-summary": "Reply To",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "draft_email_reply_to",
+              "x-ms-description-for-model": "Set to the email address or addresses, separated by semicolons, where replies should go if different from the sender's email address. Example: support@contoso.com;helpdesk@contoso.com."
             },
             "Importance": {
               "description": "Importance",
@@ -16231,7 +16319,9 @@
               ],
               "type": "string",
               "x-ms-summary": "Importance",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "draft_email_importance",
+              "x-ms-description-for-model": "Set to the email importance when urgency is stated or implied. Choose ONLY between Low, Normal, High. Example: High for urgent requests."
             }
           }
         },
@@ -16673,38 +16763,50 @@
               "description": "Example: recipient1@domain.com; recipient2@domain.com",
               "type": "string",
               "x-ms-summary": "To",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "reply_to_email_v3_to",
+              "x-ms-description-for-model": "Set to override the default reply recipients. Separate multiple email addresses with semicolons. Only set if the user explicitly wants to reply to different people than the original sender. Example: alice@example.com;bob@example.com."
             },
             "Cc": {
               "format": "email",
               "description": "Example: recipient1@domain.com; recipient2@domain.com",
               "type": "string",
               "x-ms-summary": "CC",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "reply_to_email_v3_cc",
+              "x-ms-description-for-model": "Set to CC additional recipients on the reply, separated by semicolons. Only include if user explicitly asks to CC someone. Example: manager@example.com."
             },
             "Bcc": {
               "format": "email",
               "description": "Example: recipient1@domain.com; recipient2@domain.com",
               "type": "string",
               "x-ms-summary": "BCC",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "reply_to_email_v3_bcc",
+              "x-ms-description-for-model": "Set to BCC additional recipients on the reply, separated by semicolons. Only include if user explicitly asks to BCC someone."
             },
             "Subject": {
               "description": "Email subject (if empty, the original subject used).",
               "type": "string",
               "x-ms-summary": "Subject",
-              "x-ms-visibility": "advanced"
+              "x-ms-visibility": "advanced",
+              "x-ms-name-for-model": "reply_to_email_v3_subject",
+              "x-ms-description-for-model": "Set to override the reply subject line. Leave empty to keep the original email subject (recommended for most replies)."
             },
             "Body": {
               "format": "html",
               "description": "Content of the email.",
               "type": "string",
-              "x-ms-summary": "Body"
+              "x-ms-summary": "Body",
+              "x-ms-name-for-model": "reply_to_email_v3_body",
+              "x-ms-description-for-model": "REQUIRED. Set to the reply message content. This must always be provided — a reply cannot be sent without a body. Use plain text or simple HTML. Compose the reply based on the user's intent. Example: Thanks for your email. I'll review and get back to you by Friday."
             },
             "ReplyAll": {
               "description": "True to reply to all recipients. (default: False)",
               "type": "boolean",
-              "x-ms-summary": "Reply All"
+              "x-ms-summary": "Reply All",
+              "x-ms-name-for-model": "reply_to_email_v3_reply_all",
+              "x-ms-description-for-model": "Set to true to reply to all recipients of the original email. Default is false (reply only to sender). Set to true if user says 'reply all' or wants everyone on the thread to see the response."
             },
             "Importance": {
               "description": "Pick an importance. (default: Low)",
@@ -17067,6 +17169,8 @@
               "description": "Specify email addresses separated by semicolons like someone@contoso.com",
               "type": "string",
               "x-ms-summary": "To",
+              "x-ms-name-for-model": "office365users_messagewithoptions_to",
+              "x-ms-description-for-model": "Set to the email address or addresses of the recipients, separated by semicolons. These MUST be emails and not raw names. Example: alice@abc.com;bob@xyz.com.",
               "x-ms-dynamic-values": {
                 "builtInOperation": "AadGraph.GetUsers",
                 "parameters": {},
@@ -17077,30 +17181,40 @@
               "description": "Subject of the email",
               "default": "Your input is required",
               "type": "string",
-              "x-ms-summary": "Subject"
+              "x-ms-summary": "Subject",
+              "x-ms-name-for-model": "office365users_messagewithoptions_subject",
+              "x-ms-description-for-model": "Set to a clear subject of the email being sent. Infer it from the request if not provided. Example: Select Shipping Options."
             },
             "Options": {
               "description": "List of comma separated options for the email response",
               "default": "Choice1, Choice2, Choice3",
               "type": "string",
-              "x-ms-summary": "User Options"
+              "x-ms-summary": "User Options",
+              "x-ms-name-for-model": "office365users_messagewithoptions_options",
+              "x-ms-description-for-model": "These are the options the user will choose from. Set to a single string of comma separated option labels that match the user intent. Do not include commas inside each option. Do not wrap the whole string in quotes. Example: Approve,Reject;Yes,No,Maybe."
             },
             "HeaderText": {
               "description": "Header text for email body",
               "type": "string",
               "x-ms-summary": "Header Text",
+              "x-ms-name-for-model": "office365users_messagewithoptions_header_text",
+              "x-ms-description-for-model": "Set to a short heading shown at the top of the email that tells the recipient what the message is about. Action Needed: Confirm Details.",
               "x-ms-visibility": "advanced"
             },
             "SelectionText": {
               "description": "Header text for users options selection",
               "type": "string",
               "x-ms-summary": "Selection Text",
+              "x-ms-name-for-model": "office365users_messagewithoptions_selection_text",
+              "x-ms-description-for-model": "Set to a short sentence displayed above the option buttons telling the recipient what to choose. Infer this from user's intent. Example: Select one option below.",
               "x-ms-visibility": "advanced"
             },
             "Body": {
               "description": "Body of the email",
               "type": "string",
               "x-ms-summary": "Body",
+              "x-ms-name-for-model": "office365users_messagewithoptions_body",
+              "x-ms-description-for-model": "Set to the main body text of the email, explaining the context, what the options mean, and any deadlines if there are. Plain text or simple HTML is allowed. Example: Hi Alex, please review this request about...and choose between....",
               "x-ms-visibility": "advanced"
             },
             "Importance": {
@@ -17113,6 +17227,8 @@
               ],
               "type": "string",
               "x-ms-summary": "Importance",
+              "x-ms-name-for-model": "office365users_messagewithoptions_importance",
+              "x-ms-description-for-model": "Set to the email priority when urgency is implied, using only one of: Low, Normal, or High.",
               "x-ms-visibility": "advanced"
             },
             "Attachments": {
@@ -17122,12 +17238,16 @@
                 "$ref": "#/definitions/ClientSendAttachment"
               },
               "x-ms-summary": "Attachments",
+              "x-ms-name-for-model": "office365users_messagewithoptions_attachments",
+              "x-ms-description-for-model": "Set to the attachments to send when the user provides a file.",
               "x-ms-visibility": "advanced"
             },
             "UseOnlyHTMLMessage": {
               "description": "Use only HTML message",
               "type": "boolean",
               "x-ms-summary": "Use only HTML message",
+              "x-ms-name-for-model": "office365users_messagewithoptions_use_only_html_message",
+              "x-ms-description-for-model": "Set to true to disable the actionable card and use only HTML buttons in the email body. Otherwise leave this false.",
               "x-ms-visibility": "advanced"
             },
             "HideHTMLMessage": {
@@ -17135,6 +17255,8 @@
               "default": false,
               "type": "boolean",
               "x-ms-summary": "Hide HTML message",
+              "x-ms-name-for-model": "office365users_messagewithoptions_hide_html_message",
+              "x-ms-description-for-model": "Set to true to hide the normal HTML body when using an actionable card so only the card is shown in supported clients. Leave false unless the user asks to hide the body, and do not set to true when UseOnlyHTMLMessage is true.",
               "x-ms-visibility": "advanced"
             },
             "ShowHTMLConfirmationDialog": {
@@ -17142,6 +17264,8 @@
               "default": false,
               "type": "boolean",
               "x-ms-summary": "Show HTML confirmation dialog",
+              "x-ms-name-for-model": "office365users_messagewithoptions_show_html_confirmation_dialog",
+              "x-ms-description-for-model": "Set to true to show a confirmation dialog when the recipient clicks an HTML option button so they must confirm their choice before it is submitted. Otherwise leave false.",
               "x-ms-visibility": "advanced"
             },
             "HideMicrosoftFooter": {
@@ -17149,6 +17273,8 @@
               "default": false,
               "type": "boolean",
               "x-ms-summary": "Hide Microsoft footer",
+              "x-ms-name-for-model": "office365users_messagewithoptions_hide_microsoft_footer",
+              "x-ms-description-for-model": "Set to true to hide the standard Microsoft footer text in the email body. Leave as false otherwise.",
               "x-ms-visibility": "advanced"
             }
           }
@@ -21068,8 +21194,8 @@
       "brandColor": "#0078D4",
       "useNewApimVersion": "true",
       "version": {
-        "previous": "releases/v1.0.1802\\1.0.1802.4638",
-        "current": "releases/v1.0.1788\\1.0.1788.4548"
+        "previous": "releases/v1.0.1802\\1.0.1802.4699",
+        "current": "releases/v1.0.1802\\1.0.1802.4700"
       }
     },
     "capabilities": [
@@ -21078,7 +21204,7 @@
     "interfaces": {},
     "description": "Microsoft Office 365 is a cloud-based service that is designed to help meet your organization's needs for robust security, reliability, and user productivity.",
     "createdTime": "2016-10-07T18:39:28.095527Z",
-    "changedTime": "2026-03-19T12:24:21.8443828Z",
+    "changedTime": "2026-04-18T22:16:05.3048631Z",
     "releaseTag": "Production",
     "tier": "Standard",
     "publisher": "Microsoft",

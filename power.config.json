@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "appId": null,
+  "appDisplayName": "my-app",
+  "region": "prod",
+  "environmentId": "7521b2c4-b275-ecf7-b306-8f1a62f1629c",
+  "description": "",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {
+    "af2268fe-9894-4f91-a94a-770c75cb94c2": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_office365",
+      "displayName": "Office 365 Outlook",
+      "dataSources": [
+        "office365"
+      ],
+      "dataSets": {}
+    }
+  },
+  "databaseReferences": {}
+}

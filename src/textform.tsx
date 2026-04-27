@@ -4,6 +4,8 @@ type TextformProps = {
   heading: string;
 };
 
+console.log("Textform component rendered");
+
 export default function Textform(props: TextformProps) {
 
   const [text, setText] = useState(" m amar hu");   // ✅ initialize text
